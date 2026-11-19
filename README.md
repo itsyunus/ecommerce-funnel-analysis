@@ -1,34 +1,15 @@
-# E-Commerce Funnel Analysis — View-to-Add-to-Cart Rate Optimization
-**Duration:** Jan 2024 – Apr 2024  
-**Tech:** SQL, BigQuery, Power BI
+# E-Commerce Conversion Funnel Analytics
 
-## Overview
-Analyze user events (view → add_to_cart → purchase) to compute funnel conversion rates at product and category levels. Identify low-performing SKUs and provide actionable root-cause recommendations.
+A conversion rate optimization analysis engine assessing user drop-off points across the complete transaction pipeline (`view` -> `add_to_cart` -> `purchase`). Identifies underperforming inventory SKUs and quantifies checkout friction.
 
-This project is aligned with the Kapitus JD (see `/mnt/data/Data Analytics Intern JD.pdf`).
+## Analytical Methods
 
-## Folder structure
-- `sql/` — funnel queries, aggregation scripts.
-- `docs/` — insights, recommended actions, root-cause analysis.
-- `power-bi/` — funnel visual guidance and mockups.
+- Event-Level Funnel Analysis: Aggregates multi-touch user interactions from raw event telemetry logs.
+- View-to-Cart Conversion Ratios: Identifies products with high traffic but poor cart additions to isolate pricing or description mismatches.
+- Root Cause Diagnostics: Categorizes inventory performance by product type, user segment, and referral channel.
 
-## Quick start
-1. Place `events.csv` (columns: event_id, user_id, event_timestamp, event_type, product_id) into `data/`.
-2. Load into BigQuery or a relational DB.
-3. Run SQL scripts in `sql/` to calculate funnel metrics and product-level rates.
-4. Build Power BI funnel visual and product drilldowns as described in `power-bi/`.
+## SQL Scripts
 
-## Key SQL snippets (files in `sql/`)
-- Top viewed products: `sql/top_viewed_products.sql`
-- View-to-cart conversion: `sql/view_to_cart_rate.sql`
-- Lowest-performing SKU: `sql/lowest_sku.sql`
-
-## Insights & recommendations
-- Map products with high views but low add-to-cart rates to UX, pricing, or content issues.
-- Recommend A/B testing images/descriptions for worst-performing SKUs.
-- Provide sample root-cause analysis template in `docs/insights.md`.
-
-## Deliverables
-- Funnel Power BI page (View → Add-to-Cart → Purchase)
-- SQL scripts & documentation
-- Actionable insights report
+- `sql/view_to_cart_rate.sql`: Computes conversion probability per product category.
+- `sql/top_viewed_products.sql`: Top-of-funnel traffic distribution analysis.
+- `sql/lowest_sku.sql`: Identifies critical conversion bottleneck inventory items.
