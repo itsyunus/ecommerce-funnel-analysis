@@ -1,15 +1,15 @@
-# E-Commerce Conversion Funnel Analytics
+# E-commerce Funnel Analysis
 
-A conversion rate optimization analysis engine assessing user drop-off points across the complete transaction pipeline (`view` -> `add_to_cart` -> `purchase`). Identifies underperforming inventory SKUs and quantifies checkout friction.
+A small set of SQL examples for summarizing product views and add-to-cart events. The queries assume an `events` table with one row per event and at least these columns: `product_id` and `event_type`. The examples use `view` and `add_to_cart` event values.
 
-## Analytical Methods
+## Queries
 
-- Event-Level Funnel Analysis: Aggregates multi-touch user interactions from raw event telemetry logs.
-- View-to-Cart Conversion Ratios: Identifies products with high traffic but poor cart additions to isolate pricing or description mismatches.
-- Root Cause Diagnostics: Categorizes inventory performance by product type, user segment, and referral channel.
+- `sql/top_viewed_products.sql` — lists the ten products with the most view events.
+- `sql/view_to_cart_rate.sql` — calculates view-to-cart percentage for products with more than 100 views.
+- `sql/lowest_sku.sql` — finds the lowest view-to-cart percentage among products with more than 100 views.
 
-## SQL Scripts
+These are query examples, not a complete production analytics pipeline. They do not currently calculate purchase conversion, deduplicate sessions, or define a product catalog. Adapt the event table and event names to your data before running them.
 
-- `sql/view_to_cart_rate.sql`: Computes conversion probability per product category.
-- `sql/top_viewed_products.sql`: Top-of-funnel traffic distribution analysis.
-- `sql/lowest_sku.sql`: Identifies critical conversion bottleneck inventory items.
+## Use
+
+Run the SQL files in a database that contains the expected `events` table, or change the table and column names to match your schema. The rate expressions multiply by a decimal constant to avoid integer division in common SQL engines.
